@@ -42,3 +42,26 @@ resource "aws_ssm_parameter" "paas_environment_version" {
     application = "kube_paas"
   }
 }
+
+resource "aws_ssm_document" "ansible_wrapper" {
+  name          = "run_ansible_wrapper"
+  document_type = "Command"
+
+  content = <<DOC
+  {
+  "schemaVersion": "2.2",
+  "description": "Command Document Example JSON Template",
+  "mainSteps": [
+    {
+      "action": "aws:runShellScript",
+      "name": "RunAnsibleWrapper",
+      "inputs": {
+        "runCommand": [
+          "ansible-wrapper.sh"
+        ]
+      }
+    }
+  ]
+}
+DOC
+}
