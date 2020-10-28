@@ -1,0 +1,11 @@
+image:
+  name: techcrumble/ci-image:v1.0.0
+  entrypoint:
+    - '/usr/bin/env'
+    - 'PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin'
+before_script:
+  - source CI/scripts/before_script.sh
+stages:
+  - dev_backend
+include:
+  - pipelines/dev-backend-create.yml
