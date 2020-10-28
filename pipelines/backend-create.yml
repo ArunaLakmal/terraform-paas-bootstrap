@@ -1,0 +1,7 @@
+dev_backend_create:
+  stage: dev_backend
+  only: 
+    - master
+  script:
+    - source CI/accounts/dev/credentials.sh
+    - make all
